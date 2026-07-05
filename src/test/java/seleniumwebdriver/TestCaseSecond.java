@@ -28,6 +28,7 @@ public class TestCaseSecond {
 		System.out.println("The number of images present int the page are:"+image.size());
 		
 		driver.close();
+		//added comment
 	}
 
 }
