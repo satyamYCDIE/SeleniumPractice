@@ -26,7 +26,7 @@ public class FirstTestCase {
 		}
 		
 		//Closing Browser
-		//driver.close();
+		driver.close();
 	}
 
 }
