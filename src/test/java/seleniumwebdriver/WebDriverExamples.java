@@ -10,7 +10,7 @@ public class WebDriverExamples {
 	public static void main(String[] args) 
 	{
 		WebDriver driver=new ChromeDriver();
-		driver.get("https://testautomationpractice.blogspot.com/");
+		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 		driver.manage().window().maximize();
 
 		WebElement title = driver.findElement(By.xpath("//h1[normalize-space()='Automation Testing Practice']"));
