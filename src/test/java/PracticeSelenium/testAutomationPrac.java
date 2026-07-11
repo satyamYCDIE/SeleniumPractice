@@ -35,7 +35,7 @@ public class testAutomationPrac {
 		    link.click();
 		}
 		
-		//getting windows ID and handling them by ID and title and closing them by title...... 
+		//getting windows ID and handling them by ID and Title of the page and closing them by Title...... 
 		Set<String> windowsIds=driver.getWindowHandles();
 		
 		for(String winid:windowsIds)
