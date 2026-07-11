@@ -18,20 +18,24 @@ public class testAutomationPrac {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		
+		//provided string and searched......
 		driver.findElement(By.xpath("//input[@id='Wikipedia1_wikipedia-search-input']")).sendKeys("Selenium");
 		driver.findElement(By.xpath("//input[@type='submit']")).click();
 		
-		Thread.sleep(3000);
-		//List<WebElement> links=driver.findElements(By.tagName("a"));
-		//System.out.println("The number of tag links in the page is:"+links.size());
+		Thread.sleep(3000); // to wait for sometime to load the links.....
+		
+		//find all the anchor tag within that specific UI for Wikipedia11.......
 		WebElement menu = driver.findElement(By.xpath("//div[@id='Wikipedia1']"));
 
 		List<WebElement> links = menu.findElements(By.tagName("a"));
-
+		
+		//clicking on the each link using for loop....
 		for (WebElement link : links) 
 		{
 		    link.click();
 		}
+		
+		//getting windows ID and handling them by ID and title and closing them by title...... 
 		Set<String> windowsIds=driver.getWindowHandles();
 		
 		for(String winid:windowsIds)
