@@ -1,14 +1,16 @@
 package PracticeSelenium;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class hiddenDropDown {
 
-	public static void main(String[] args) 
+	public static void main(String[] args) throws InterruptedException 
 	{
 		WebDriver driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -28,6 +30,21 @@ public class hiddenDropDown {
 		
 		//choosing from hidden drop down.....
 		driver.findElement(By.xpath("//span[normalize-space()='Database Administrator']")).click();
+		Thread.sleep(5000);
+		
+		//counting number of options available in drop down.....
+		List<WebElement> options =driver.findElements(By.xpath("//div[@role='listbox']//span"));
+		System.out.println("The count of options:"+options.size());
+		
+		//printing all the options available.....
+//		for(WebElement option:options)
+//		{
+//			System.out.println(option.getText());
+//		}
+		
+		//checking employee status and choosing a value from the dropdown......
+		driver.findElement(By.xpath("//body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/form[1]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[1]/div[2]/i[1]")).click();
+		driver.findElement(By.xpath("//span[normalize-space()='Part-Time Internship']")).click();
 	}
 
 }
