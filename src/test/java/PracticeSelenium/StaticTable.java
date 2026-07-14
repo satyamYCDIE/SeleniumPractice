@@ -29,7 +29,7 @@ public class StaticTable {
 		//System.out.println("The bookname fetched from the table:"+BookName);
 		
 		//Printing all the data from the table......
-		for(int r=2;r<=rows;r++)
+		/*for(int r=2;r<=rows;r++)
 		{
 			for(int c=1;c<=cols;c++)
 			{
@@ -37,7 +37,29 @@ public class StaticTable {
 				System.out.print(value+"    ");
 			}
 			System.out.println();
+		}*/
+		
+		//printing bookname and author name Amit........
+		
+		for(int r=2;r<=rows;r++)
+		{
+		String autname=driver.findElement(By.xpath("//table[@name='BookTable']//tr["+r+"]//td[2]")).getText();
+		if(autname.equals("Amit"))
+		{
+			String Bname=driver.findElement(By.xpath("//table[@name='BookTable']//tr["+r+"]//td[1]")).getText();
+			System.out.println(Bname+"\t"+autname);
 		}
+		}
+		
+		//adding total sum of the book price.....
+		
+		int total=0;
+		for(int r=2;r<=rows;r++)
+		{
+			String amount=driver.findElement(By.xpath("//table[@name='BookTable']//tr["+r+"]//td[4]")).getText();
+			total=total+Integer.parseInt(amount);
+		}
+		System.out.println("The total price od the book:"+total);
 	}
 
 }
