@@ -25,8 +25,19 @@ public class StaticTable {
 		System.out.println("The number of columns present in the table:"+cols);
 		
 		//read data from a specific row and column.....row=5 column=1
-		String BookName=driver.findElement(By.xpath("//table[@name='BookTable']//tr[6]//td[1]")).getText();
-		System.out.println("The bookname fetched from the table:"+BookName);
+		//String BookName=driver.findElement(By.xpath("//table[@name='BookTable']//tr[6]//td[1]")).getText();
+		//System.out.println("The bookname fetched from the table:"+BookName);
+		
+		//Printing all the data from the table......
+		for(int r=2;r<=rows;r++)
+		{
+			for(int c=1;c<=cols;c++)
+			{
+				String value=driver.findElement(By.xpath("//table[@name='BookTable']//tr["+r+"]//td["+c+"]")).getText();
+				System.out.print(value+"    ");
+			}
+			System.out.println();
+		}
 	}
 
 }
