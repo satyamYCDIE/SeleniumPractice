@@ -9,7 +9,39 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class DatePicker {
+	
+	static void selectMonthYear(WebDriver driver,String month,String year)
+	{
+		//Selecting month and year....
+				while(true)
+				{
+					
+				String currYear=driver.findElement(By.xpath("//span[@class='ui-datepicker-year']")).getText();
+				String currMonth=driver.findElement(By.xpath("//span[@class='ui-datepicker-month']")).getText();
+				//System.out.println(currYear+""+currMonth);
+				
+				if(currYear.equals(year) && currMonth.equals(month))
+					{
+						break;
+					}
+				driver.findElement(By.xpath("//span[@class='ui-icon ui-icon-circle-triangle-e']")).click();
+				}
+	}
 
+	static void selectDate(WebDriver driver,String date)
+	{
+		//selecting date......
+				List<WebElement> dates=driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar']//tbody//tr//a"));
+				
+				for(WebElement dt:dates)
+				{
+					if(dt.getText().equals(date))
+					{
+						dt.click();
+						break;
+					}
+				}
+	}
 	public static void main(String[] args) 
 	{
 		WebDriver driver = new ChromeDriver();
@@ -30,31 +62,8 @@ public class DatePicker {
 		String date="29";
 		
 		driver.findElement(By.xpath("//input[@id='datepicker']")).click();
-		//Selecting month and year....
-		while(true)
-		{
-			
-		String currYear=driver.findElement(By.xpath("//span[@class='ui-datepicker-year']")).getText();
-		String currMonth=driver.findElement(By.xpath("//span[@class='ui-datepicker-month']")).getText();
-		//System.out.println(currYear+""+currMonth);
-		
-		if(currYear.equals(year) && currMonth.equals(month))
-			{
-				break;
-			}
-		driver.findElement(By.xpath("//span[@class='ui-icon ui-icon-circle-triangle-e']")).click();
-		}
-		//selecting date......
-		List<WebElement> dates=driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar']//tbody//tr//a"));
-		
-		for(WebElement dt:dates)
-		{
-			if(dt.getText().equals(date))
-			{
-				dt.click();
-				break;
-			}
-		}
+		selectMonthYear(driver,month,year);
+		selectDate(driver,date);
 	}
 
 }
