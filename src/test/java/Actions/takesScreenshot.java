@@ -27,7 +27,7 @@ public class takesScreenshot {
 		//sourcefile.renameTo(targetfile);  //copying source file to target file
 		FileUtils.copyFile(sourcefile, targetfile);*/
 		
-		//specific element screenshot......
+		//specific Area screenshot......
 		WebElement specificEle=driver.findElement(By.xpath("//div[@class='footer-widgets-container grid-container']"));
 		File sourcefile=specificEle.getScreenshotAs(OutputType.FILE);
 		File targetfile=new File(System.getProperty("user.dir")+"/screenshots/specificEle.png");
