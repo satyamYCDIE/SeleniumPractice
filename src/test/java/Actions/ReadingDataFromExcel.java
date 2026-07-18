@@ -31,10 +31,12 @@ public class ReadingDataFromExcel {
 			for(int c=0;c<totalcell;c++)
 			{
 				XSSFCell cell=currentRow.getCell(c);
-				System.out.print(cell+"\t");
+				System.out.print(cell.toString()+"\t");
 			}
 			System.out.println();
 		}
+		workbook.close();
+		file.close();
 	}
 
 }
