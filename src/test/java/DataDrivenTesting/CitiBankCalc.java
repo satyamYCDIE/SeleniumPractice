@@ -2,12 +2,15 @@ package DataDrivenTesting;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CitiBankCalc {
 
@@ -45,11 +48,30 @@ public class CitiBankCalc {
 			intr.clear();
 			intr.sendKeys(interestRate);
 			
-			Select choosecmptype=new Select(driver.findElement(By.xpath("//span[@class='mat-mdc-select-min-line']")));
-			choosecmptype.selectByVisibleText(freq);
+			WebElement compoundrp = driver.findElement(By.xpath("//mat-select[@id='mat-select-0']"));   //select class object compounddrp will find elelment by id
+			compoundrp.click();
 			
+			List<WebElement> options=driver.findElements(By.xpath("//div[@id='mat-select-0-panel']//mat-option"));
+			
+			for(WebElement option:options)
+			{
+				if(option.getText().equals(freq))
+					option.click();
+			}
+			
+//			driver.findElement(By.xpath("//span[@class='mat-mdc-select-min-line']")).clear();
+//			Thread.sleep(3000);
+//			Select choosecmptype=new Select(driver.findElement(By.xpath("//span[@class='mat-mdc-select-min-line']")));
+//			choosecmptype.selectByVisibleText(freq);
+//			
 			//clicked on calculate......
-			driver.findElement(By.xpath("//button[@id='CIT-chart-submit']")).click();
+			//driver.findElement(By.xpath("//button[@id='CIT-chart-submit']")).click();
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+			WebElement btn = wait.until(
+			    ExpectedConditions.elementToBeClickable(By.id("CIT-chart-submit")));
+
+			btn.click();
 			
 			//Validation......
 			String act_value=driver.findElement(By.xpath("//span[@id='displayTotalValue']")).getText();
